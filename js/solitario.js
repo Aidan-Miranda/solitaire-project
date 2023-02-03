@@ -60,11 +60,6 @@ function comenzar_juego() {
 	*/
 
 	/*** !!!!!!!!!!!!!!!!!!! CODIGO !!!!!!!!!!!!!!!!!!!! **/
-	// Primero creamos los arrays de palos y números, así como el array del mazo inicial vacío
-	const palos = ['cir', 'cua', 'hex', 'ova'];
-	const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-	const mazo_inicial = [];
-
 	// Recorremos los arrays de palos y números para crear las cartas y añadirlas al mazo inicial
 	for (let palo of palos) {
 		for (let numero of numeros) {
