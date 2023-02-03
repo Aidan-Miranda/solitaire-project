@@ -95,7 +95,7 @@ function comenzar_juego() {
 } // comenzar_juego
 
 comenzar_juego();
-/**
+/*
 	Se debe encargar de arrancar el temporizador: cada 1000 ms se
 	debe ejecutar una función que a partir de la cuenta autoincrementada
 	de los segundos (segundos totales) visualice el tiempo oportunamente con el 
@@ -118,6 +118,8 @@ comenzar_juego();
 	el resultado de la llamada a setInterval en alguna variable para llamar oportunamente
 	a clearInterval en su caso.   
 */
+
+
 
 function arrancar_tiempo() {
 	/*** !!!!!!!!!!!!!!!!!!! CODIGO !!!!!!!!!!!!!!!!!!!! **/
