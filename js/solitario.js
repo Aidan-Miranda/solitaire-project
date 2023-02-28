@@ -32,7 +32,8 @@ let cont_receptor1 = document.getElementById("cont_receptor1");
 let cont_receptor2 = document.getElementById("cont_receptor2");
 let cont_receptor3 = document.getElementById("cont_receptor3");
 let cont_receptor4 = document.getElementById("cont_receptor4");
-let cont_movimientos = document.getElementById("cont_movimientos");
+let cont_movimientos = document.getElementById("contador_movimientos");
+let contador_movimientos = 0;
 
 // Tiempo
 let cont_tiempo = document.getElementById("cont_tiempo"); // span cuenta tiempo
@@ -93,6 +94,8 @@ function comenzar_juego() {
 	cont_receptor2.innerHTML = 0;
 	cont_receptor3.innerHTML = 0;
 	cont_receptor4.innerHTML = 0;
+	cont_movimientos.innerHTML = 0;
+	contador_movimientos = 0;
 
 	/*** !!!!!!!!!!!!!!!!!!! CODIGO !!!!!!!!!!!!!!!!!!!! **/
 	// Recorremos los arrays de palos y números para crear las cartas y añadirlas al mazo inicial
@@ -293,56 +296,85 @@ tapete_sobrantes.addEventListener("dragstart", (event) => {
 		event.preventDefault();
 	}
 });
+
+// FUNCIONES TAPETE SOBRANTES
 // Funciones dragover y drop para el tapete sobrantes
 tapete_sobrantes.addEventListener("dragover", (event) => {
 	event.preventDefault();
+	tapete_sobrantes.style.border = "2px solid green";
 });
-
+tapete_sobrantes.addEventListener("dragleave", (event) => {
+	event.preventDefault();
+	tapete_sobrantes.style.border = "none";
+});
 // Cuando se suelta una carta en el tapete de sobrantes se ejecuta la función soltarSobrantes
 tapete_sobrantes.addEventListener("drop", function (event) {
-	soltarSobrantes(event, this);
+	soltarCarta(event, this);
 });
 
+
+// FUNCIONES TAPETE RECEPTOR 1
 // Funciones dragover y drop para el tapete receptor 1
 tapete_receptor1.addEventListener("dragover", (event) => {
 	event.preventDefault();
+	tapete_receptor1.style.border = "2px solid green";
 });
-
 tapete_receptor1.addEventListener("drop", function (event) {
-	soltarSobrantes(event, this);
+	soltarCarta(event, this);
+});
+tapete_receptor1.addEventListener("dragleave", (event) => {
+	event.preventDefault();
+	tapete_receptor1.style.border = "none";
 });
 
+
+// FUNCIONES TAPETE RECEPTOR 2
 // Funciones dragover y drop para el tapete receptor 2
 tapete_receptor2.addEventListener("dragover", (event) => {
 	event.preventDefault();
+	tapete_receptor2.style.border = "2px solid green";
 });
-
 tapete_receptor2.addEventListener("drop", function (event) {
-	soltarSobrantes(event, this);
+	soltarCarta(event, this);
+});
+tapete_receptor2.addEventListener("dragleave", (event) => {
+	event.preventDefault();
+	tapete_receptor2.style.border = "none";
 });
 
+// FUNCIONES TAPETE RECEPTOR 3
 // Funciones dragover y drop para el tapete receptor 3
 tapete_receptor3.addEventListener("dragover", (event) => {
 	event.preventDefault();
+	tapete_receptor3.style.border = "2px solid green";
 });
-
 tapete_receptor3.addEventListener("drop", function (event) {
-	soltarSobrantes(event, this);
+	soltarCarta(event, this);
+});
+tapete_receptor3.addEventListener("dragleave", (event) => {
+	event.preventDefault();
+	tapete_receptor3.style.border = "none";
 });
 
+// FUNCIONES TAPETE RECEPTOR 4
 // Funciones dragover y drop para el tapete receptor 4
 tapete_receptor4.addEventListener("dragover", (event) => {
 	event.preventDefault();
+	tapete_receptor4.style.border = "2px solid green";
+});
+tapete_receptor4.addEventListener("drop", function (event) {
+	soltarCarta(event, this);
+});
+tapete_receptor4.addEventListener("dragleave", (event) => {
+	event.preventDefault();
+	tapete_receptor4.style.border = "none";
 });
 
-tapete_receptor4.addEventListener("drop", function (event) {
-	soltarSobrantes(event, this);
-});
 
 
 // Esto es para el estilo de la carta que se está moviendo
 let zIndexDrop = 0;
-function soltarSobrantes(event, tapete) {
+function soltarCarta(event, tapete) {
 	event.preventDefault();
 	if (event.target.tagName === "DIV" || event.target.parentNode === tapete) {
 		// Se obtiene el id de la carta que se está moviendo
@@ -383,6 +415,8 @@ function soltarSobrantes(event, tapete) {
 					case "mazo_sobrantes":
 						mazo_sobrantes.push(carta);
 						mazo_inicial.pop();
+						contador_movimientos++;
+						cont_movimientos.innerHTML = contador_movimientos;
 						moverCarta();
 						break;
 					// Si se añade al receptor 1 se comrpueba que sea válida
@@ -391,6 +425,8 @@ function soltarSobrantes(event, tapete) {
 							// Si es valida se añade en receptor, borra en inicial y ejecuta la función moverCarta
 							mazo_receptor1.push(carta);
 							mazo_inicial.pop();
+							contador_movimientos++;
+							cont_movimientos.innerHTML = contador_movimientos;
 							moverCarta();
 						} else {
 							// Añadir un else
@@ -401,6 +437,8 @@ function soltarSobrantes(event, tapete) {
 						if (comprobarCartaValida(carta, mazo_receptor2)) {
 							mazo_receptor2.push(carta);
 							mazo_inicial.pop();
+							contador_movimientos++;
+							cont_movimientos.innerHTML = contador_movimientos;
 							moverCarta();
 						}
 						break;
@@ -408,6 +446,8 @@ function soltarSobrantes(event, tapete) {
 						if (comprobarCartaValida(carta, mazo_receptor3)) {
 							mazo_receptor3.push(carta);
 							mazo_inicial.pop();
+							contador_movimientos++;
+							cont_movimientos.innerHTML = contador_movimientos;
 							moverCarta();
 						}
 						break;
@@ -415,6 +455,8 @@ function soltarSobrantes(event, tapete) {
 						if (comprobarCartaValida(carta, mazo_receptor4)) {
 							mazo_receptor4.push(carta);
 							mazo_inicial.pop();
+							contador_movimientos++;
+							cont_movimientos.innerHTML = contador_movimientos;
 							moverCarta();
 						}
 						break;
@@ -432,6 +474,8 @@ function soltarSobrantes(event, tapete) {
 					case "mazo_sobrantes":
 						mazo_sobrantes.push(carta);
 						mazo_sobrantes.pop();
+						contador_movimientos++;
+						cont_movimientos.innerHTML = contador_movimientos;
 						moverCarta();
 						break;
 					// Si se añade al receptor 1 se comrpueba que sea válida
@@ -440,6 +484,8 @@ function soltarSobrantes(event, tapete) {
 							// Si es valida se añade en receptor, borra en inicial y ejecuta la función moverCarta
 							mazo_receptor1.push(carta);
 							mazo_sobrantes.pop();
+							contador_movimientos++;
+							cont_movimientos.innerHTML = contador_movimientos;
 							moverCarta();
 						} else {
 							// Añadir un else
@@ -450,6 +496,8 @@ function soltarSobrantes(event, tapete) {
 						if (comprobarCartaValida(carta, mazo_receptor2)) {
 							mazo_receptor2.push(carta);
 							mazo_sobrantes.pop();
+							contador_movimientos++;
+							cont_movimientos.innerHTML = contador_movimientos;
 							moverCarta();
 						}
 						break;
@@ -457,6 +505,8 @@ function soltarSobrantes(event, tapete) {
 						if (comprobarCartaValida(carta, mazo_receptor3)) {
 							mazo_receptor3.push(carta);
 							mazo_sobrantes.pop();
+							contador_movimientos++;
+							cont_movimientos.innerHTML = contador_movimientos;
 							moverCarta();
 						}
 						break;
@@ -464,6 +514,8 @@ function soltarSobrantes(event, tapete) {
 						if (comprobarCartaValida(carta, mazo_receptor4)) {
 							mazo_receptor4.push(carta);
 							mazo_sobrantes.pop();
+							contador_movimientos++;
+							cont_movimientos.innerHTML = contador_movimientos;
 							moverCarta();
 						}
 						break;
@@ -481,6 +533,12 @@ function soltarSobrantes(event, tapete) {
 		cont_receptor3.innerHTML = mazo_receptor3.length;
 		cont_receptor4.innerHTML = mazo_receptor4.length;
 		cont_sobrantes.innerHTML = mazo_sobrantes.length;
+
+		tapete_sobrantes.style.border = "none";
+		tapete_receptor1.style.border = "none";
+		tapete_receptor2.style.border = "none";
+		tapete_receptor3.style.border = "none";
+		tapete_receptor4.style.border = "none";
 
 		// Si el mazo inicial está vacío, se añaden las cartas del mazo sobrantes
 		if (mazo_inicial.length === 0) {

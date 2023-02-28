@@ -9,6 +9,11 @@
 /* Todos los contadores estarán ubicados en la parte inferior 
    derecha (position absolute) de los respectivos tapetes (position relative).
 */
+
+body {
+	background-color: #f3e2ff !important;
+}
+
 .contador {
 	position: absolute;
 	bottom: 0px;
@@ -19,7 +24,6 @@
 /* Centrado del título y color */
 h1#titulo {
 	text-align: center;
-	color: #E65014;
 	float: left;
 	margin-left: 50vw;
 	transform: translate(-85%, 0);
@@ -55,7 +59,7 @@ div.tapete {
 div.tapete#inicial {
 	width: 340px;
 	height: 340px;
-	background-color: lightgrey;
+	background-color: #d6c9fd;
 }
 
 /* Dimensiones para todos los tapetes salvo el inicial */
@@ -66,15 +70,17 @@ div.tapete:not(#inicial) {
 
 /* Color de fondo para el tapete de las cartas sobrantes */
 div.tapete#sobrantes {
-	background-color: lightblue;
+	background-color: #c8b6ff;
 }
 
 /* Color de fondo de los tapetes receptores */
 div.tapete.receptor {
-	background-color: lightgreen;
+	background-color: #b3abfe;
 }
 
 #reset {
 	margin-left: 50vw;
 	transform: translate(-50%, 0);
+	background-color: #A49AFF;
+	border-color: #b3abfe;
 }
